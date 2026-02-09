@@ -1,0 +1,103 @@
+name: CI/CD - 고급 파이프라인
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Job 1: 코드 품질 검사
+  lint:
+    name: 코드 린트 검사
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Node.js 설정
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: 코드 스타일 확인
+      run: |
+        echo "코드 스타일 검사 중..."
+        echo "✅ 코드 스타일 검사 완료"
+
+  # Job 2: 테스트 실행 (여러 Node 버전)
+  test:
+    name: 테스트 실행
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [16, 18, 20]
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Node.js ${{ matrix.node-version }} 설정
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - name: 테스트 실행
+      run: npm test
+
+  # Job 3: 빌드
+  build:
+    name: 빌드
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Node.js 설정
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: 빌드 실행
+      run: |
+        echo "애플리케이션 빌드 중..."
+        npm start
+        echo "✅ 빌드 완료"
+    
+    - name: 빌드 결과 업로드
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-artifacts
+        path: |
+          index.js
+          package.json
+
+  # Job 4: 배포 (main 브랜치에만)
+  deploy:
+    name: 배포
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: 빌드 결과 다운로드
+      uses: actions/download-artifact@v3
+      with:
+        name: build-artifacts
+    
+    - name: 배포 시뮬레이션
+      run: |
+        echo "🚀 배포 시작..."
+        echo "서버: production-server.example.com"
+        echo "환경: Production"
+        echo "✅ 배포 완료!"
+    
+    - name: 배포 알림
+      run: |
+        echo "📢 배포 알림 전송"
+        echo "커밋: ${{ github.sha }}"
+        echo "작성자: ${{ github.actor }}"

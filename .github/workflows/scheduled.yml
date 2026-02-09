@@ -1,0 +1,30 @@
+name: 스케줄 작업 - 정기 테스트
+
+# 매일 오전 9시(UTC)에 자동 실행
+on:
+  schedule:
+    - cron: '0 9 * * *'  # 매일 오전 9시
+  workflow_dispatch:  # 수동 실행도 가능
+
+jobs:
+  scheduled-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Node.js 설정
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: 정기 테스트 실행
+      run: |
+        echo "🕐 정기 테스트 시작: $(date)"
+        npm test
+        echo "✅ 정기 테스트 완료"
+    
+    - name: 건강 체크
+      run: |
+        echo "시스템 상태 확인 중..."
+        npm start

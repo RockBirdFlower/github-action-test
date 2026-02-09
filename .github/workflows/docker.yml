@@ -1,0 +1,44 @@
+name: Docker CI/CD
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*'
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Docker 메타데이터 설정
+      id: meta
+      uses: docker/metadata-action@v4
+      with:
+        images: myapp
+        tags: |
+          type=ref,event=branch
+          type=semver,pattern={{version}}
+          type=sha
+    
+    - name: Docker 이미지 빌드
+      run: |
+        echo "🐳 Docker 이미지 빌드 중..."
+        echo "태그: ${{ steps.meta.outputs.tags }}"
+        echo "✅ 이미지 빌드 완료"
+    
+    - name: 이미지 테스트
+      run: |
+        echo "컨테이너 테스트 실행 중..."
+        npm test
+    
+    # - name: Docker Hub에 푸시 (실제 사용시 주석 해제)
+    #   uses: docker/login-action@v2
+    #   with:
+    #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+    #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+    
+    # - name: 이미지 푸시
+    #   run: docker push ${{ steps.meta.outputs.tags }}

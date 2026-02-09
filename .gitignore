@@ -1,0 +1,24 @@
+# Node modules
+node_modules/
+
+# 로그 파일
+*.log
+npm-debug.log*
+
+# OS 파일
+.DS_Store
+Thumbs.db
+
+# IDE 설정
+.vscode/
+.idea/
+
+# 빌드 결과
+build/
+dist/
+*.json
+!package.json
+
+# 환경 변수
+.env
+.env.local

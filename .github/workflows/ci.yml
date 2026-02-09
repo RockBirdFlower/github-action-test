@@ -1,0 +1,33 @@
+name: CI - 기본 테스트
+
+# 워크플로우가 언제 실행될지 정의
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+# 실행할 작업들
+jobs:
+  test:
+    # 실행 환경
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 1. 코드 체크아웃
+    - name: 코드 체크아웃
+      uses: actions/checkout@v3
+    
+    # 2. Node.js 설정
+    - name: Node.js 설정
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    # 3. 테스트 실행
+    - name: 테스트 실행
+      run: npm test
+    
+    # 4. 애플리케이션 실행 (선택사항)
+    - name: 애플리케이션 실행
+      run: npm start
