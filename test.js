@@ -64,3 +64,8 @@ test('multiply(3, 4)는 12를 반환해야 함', () => {
 test('multiply(0, 100)는 0을 반환해야 함', () => {
   assertEqual(multiply(0, 100), 0);
 });
+
+
+test('의도적인 실패 테스트', () => {
+  assertEqual(add(1, 1), 3);  // 이건 실패할 것입니다
+});
