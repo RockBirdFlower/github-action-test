@@ -6,7 +6,7 @@ GitHub Actions를 5분 안에 시작해보세요!
 
 1. GitHub에 로그인
 2. 새 저장소 생성 (New repository)
-3. 저장소 이름: `github-actions-demo`
+3. 저장소 이름: `github-actions-test`
 4. Public 또는 Private 선택
 5. Create repository
 
@@ -16,7 +16,7 @@ GitHub Actions를 5분 안에 시작해보세요!
 
 ```bash
 # 이 프로젝트 폴더로 이동
-cd github-actions-demo
+cd github-actions-test
 
 # Git 초기화
 git init

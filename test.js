@@ -1,5 +1,5 @@
 // 간단한 테스트 스크립트
-const { add, greet } = require('./index.js');
+const { add, greet, multiply } = require('./index.js');
 
 let testsPassed = 0;
 let testsFailed = 0;
@@ -53,3 +53,14 @@ console.log(`총 테스트: ${testsPassed + testsFailed}`);
 if (testsFailed > 0) {
   process.exit(1);
 }
+
+
+
+
+test('multiply(3, 4)는 12를 반환해야 함', () => {
+  assertEqual(multiply(3, 4), 12);
+});
+
+test('multiply(0, 100)는 0을 반환해야 함', () => {
+  assertEqual(multiply(0, 100), 0);
+});
