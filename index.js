@@ -16,16 +16,3 @@ console.log('2 + 3 =', add(2, 3));
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { add, greet };
 }
-
-// 새로운 함수 추가
-
-function subtract(a, b) {
-  return a - b;
-}
-
-
-// 곱셈 함수
-function multiply(a, b) {
-  return a * b;
-}
-module.exports = { add, greet, subtract, multiply };

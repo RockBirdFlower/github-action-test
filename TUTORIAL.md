@@ -394,7 +394,7 @@ jobs:
       run: node index.js
     
     - name: Artifacts 업로드
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: build-artifacts
         path: build-info.json
@@ -405,7 +405,7 @@ jobs:
     
     steps:
     - name: Artifacts 다운로드
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: build-artifacts
     

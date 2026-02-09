@@ -1,5 +1,5 @@
 // 간단한 테스트 스크립트
-const { add, greet, multiply } = require('./index.js');
+const { add, greet } = require('./index.js');
 
 let testsPassed = 0;
 let testsFailed = 0;
@@ -16,6 +16,10 @@ function test(description, callback) {
     testsFailed++;
   }
 }
+
+test('의도적인 실패 테스트', () => {
+  assertEqual(add(1, 1), 3);  // 이건 실패할 것입니다
+});
 
 // assert 함수
 function assertEqual(actual, expected) {
@@ -55,17 +59,3 @@ if (testsFailed > 0) {
 }
 
 
-
-
-test('multiply(3, 4)는 12를 반환해야 함', () => {
-  assertEqual(multiply(3, 4), 12);
-});
-
-test('multiply(0, 100)는 0을 반환해야 함', () => {
-  assertEqual(multiply(0, 100), 0);
-});
-
-
-test('의도적인 실패 테스트', () => {
-  assertEqual(add(1, 1), 3);  // 이건 실패할 것입니다
-});
