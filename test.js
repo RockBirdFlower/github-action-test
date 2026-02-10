@@ -17,9 +17,9 @@ function test(description, callback) {
   }
 }
 
-test('의도적인 실패 테스트', () => {
-  assertEqual(add(1, 1), 3);  // 이건 실패할 것입니다
-});
+// test('의도적인 실패 테스트', () => {
+//   assertEqual(add(1, 1), 3);  // 이건 실패할 것입니다
+// });
 
 // assert 함수
 function assertEqual(actual, expected) {
