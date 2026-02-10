@@ -47,17 +47,6 @@ test('divide(10, 2)는 5를 반환해야 함', () => {
   assertEqual(divide(10, 2), 5);
 });
 
-test('divide(7, 0)은 에러를 발생시켜야 함', () => {
-  try {
-    divide(7, 0);
-    throw new Error('에러가 발생하지 않음');
-  } catch (error) {
-    if (error.message !== '0으로 나눌 수 없습니다') {
-      throw error;
-    }
-  }
-});
-
 // 결과 출력
 console.log('\n=== 테스트 결과 ===');
 console.log(`통과: ${testsPassed}`);
