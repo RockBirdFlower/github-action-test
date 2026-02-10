@@ -1,19 +1,22 @@
 pipeline {
     agent any
+    tools {
+        nodejs 'node18'
+    }
     stages {
-        stage('Clone') {
+        stage('Install') {
             steps {
-                echo 'Code cloned successfully!'
-            }
-        }
-        stage('Build') {
-            steps {
-                echo 'Building...'
+                sh 'npm install'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing...'
+                sh 'npm test'
+            }
+        }
+        stage('Done') {
+            steps {
+                echo 'All tests passed!'
             }
         }
     }
