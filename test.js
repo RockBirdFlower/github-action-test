@@ -43,6 +43,10 @@ test('greet("홍길동")은 올바른 인사를 반환해야 함', () => {
   assertEqual(greet('홍길동'), '안녕하세요, 홍길동님!');
 });
 
+test('divide(10, 2)는 5를 반환해야 함', () => {
+  assertEqual(divide(10, 2), 5);
+});
+
 // 결과 출력
 console.log('\n=== 테스트 결과 ===');
 console.log(`통과: ${testsPassed}`);

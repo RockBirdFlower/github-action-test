@@ -1,0 +1,26 @@
+name: 환경 변수 테스트
+
+on: [push]
+
+env:
+  GLOBAL_VAR: "전역 변수"
+
+jobs:
+  env-test:
+    runs-on: ubuntu-latest
+    
+    env:
+      JOB_VAR: "Job 레벨 변수"
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: 환경 변수 출력
+      env:
+        STEP_VAR: "Step 레벨 변수"
+      run: |
+        echo "전역 변수: $GLOBAL_VAR"
+        echo "Job 변수: $JOB_VAR"
+        echo "Step 변수: $STEP_VAR"
+        echo "GitHub 변수: ${{ github.repository }}"
+        echo "실행자: ${{ github.actor }}"
