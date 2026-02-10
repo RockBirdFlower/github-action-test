@@ -1,5 +1,5 @@
 // 간단한 테스트 스크립트
-const { add, greet } = require('./index.js');
+const { add, greet, divide } = require('./index.js');
 
 let testsPassed = 0;
 let testsFailed = 0;
