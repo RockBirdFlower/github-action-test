@@ -24,6 +24,8 @@ function assertEqual(actual, expected) {
   }
 }
 
+// 주석만 넣어서 뭐 없다!
+
 // 테스트 실행
 console.log('=== 테스트 시작 ===\n');
 
