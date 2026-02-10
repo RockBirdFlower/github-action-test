@@ -284,7 +284,7 @@ jobs:
       JOB_VAR: "Job 레벨 변수"
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: 환경 변수 출력
       env:
@@ -383,10 +383,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Node.js 설정
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '18'
     
