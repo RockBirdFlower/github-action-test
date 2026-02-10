@@ -1,3 +1,21 @@
+const fs = require('fs');
+
+function createBuildInfo() {
+  const buildInfo = {
+    version: '1.0.0',
+    buildTime: new Date().toISOString(),
+    nodeVersion: process.version
+  };
+  
+  fs.writeFileSync('build-info.json', JSON.stringify(buildInfo, null, 2));
+  console.log('빌드 정보 파일 생성 완료');
+}
+
+if (require.main === module) {
+  createBuildInfo();
+}
+
+
 // 간단한 덧셈 함수
 function add(a, b) {
   return a + b;
